@@ -70,17 +70,16 @@ stop_words_dict = {
 ### START FUNCTION
 def dictionary_of_metrics(items):
     '''Parameter:
-        The function takes in a list as input
+            The function takes in a list as input
        Body:
-       The list is converted to a numpy array
-       Created a dictionary that has the items as keys,
-       The corresponding values to the items are calculated from the numpy array
+            The list is converted to a numpy array
+            Created a dictionary that has the items as keys,
+            The corresponding values to the items are calculated from the numpy array
        Return:
-         Returns a dictionary as output '''
-    #Converted the list of items into a numpy array called 'item_list'
+            Returns a dictionary as output 
+    '''
+                                
     items_np = np.array(items)
-    
-    #Return a dictionary with the metrics 'mean','median','std','var','min','max' as keys, and with  'items_rounded' values
     metrics_dictionary = {'mean' : round(items_np.mean(), 2), 
                          'median':round(np.median(items_np,axis = None), 2),
                          'var' : round(items_np.var(ddof = 1), 2),
@@ -89,9 +88,6 @@ def dictionary_of_metrics(items):
                          'max' : round(items_np.max(), 2)}
 
     return metrics_dictionary
-
-
-
 ### END FUNCTION
 
 ### START FUNCTION
@@ -124,26 +120,23 @@ def number_of_tweets_per_day(df):
 
 def word_splitter(df):
     '''
-       
-
-
-       Parameter: 
-        The function takes in a dataframe as input.
-       Body:
-        It takes a copy of the dataframe from the input
-        It extracts a data series and put the contents of the data series as lower case strings.
-        The lower case strings are split into a new list called  'tweets_data_series_split'
-        The list is placed into a data series called 'Split Tweets' that is then modified into
-        the dataframe, and is displayed as a new column called 'Split Tweets'
-
+        Parameter: 
+            The function takes in a dataframe as input.
+        Body:
+            A copy of the input is made locally in the function
+            It extracts a data series and put the contents of the data series as lower case strings.
+            The lower case strings are split into a new list called  'tweets_data_series_split'
+            The list is placed into a data series called 'Split Tweets' that is then modified into
+            the dataframe, and is displayed as a new column called 'Split Tweets'
+        
         Return:
             The function returs a dataframe with a new column called 'Split Tweets'
-       '''
-    df = twitter_df.copy() #Made a copy of the main twitter_df and call it df
-    tweets_dataseries = df['Tweets'] #Extract the tweets dataseries to a variable called tweets_dataseries
-    tweets_dataseries_lower = tweets_dataseries.str.lower() #Lowercase the tweets_dataseries
-    tweets_dataseries_split = tweets_dataseries_lower.str.split() #Split the lowercase tweets_dataseries
-    df['Split Tweets'] = tweets_dataseries_split #Create a new column called 'Split Tweets', add it to the  dataframe
+    '''
+    df = twitter_df.copy() 
+    tweets_dataseries = df['Tweets'] 
+    tweets_dataseries_lower = tweets_dataseries.str.lower() 
+    tweets_dataseries_split = tweets_dataseries_lower.str.split()
+    df['Split Tweets'] = tweets_dataseries_split 
     return df
 
 ### END FUNCTION
