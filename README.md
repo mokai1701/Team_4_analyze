@@ -3,7 +3,7 @@
 This will show the package we're going to install has been packaged. moreover it allows for easy installation of the our python package.
 
 # Functions 
-Contains all the data,file imports abd function definition for all our 7 functions
+Contains all the datafile imports and function definition for all our 7 functions
 
 # Script.py
 This is a script file which you use to call all our functions and imports for more effective use.
