@@ -69,6 +69,14 @@ stop_words_dict = {
 
 ### START FUNCTION
 def dictionary_of_metrics(items):
+    '''Parameter:
+        The function takes in a list as input
+       Body:
+       The list is converted to a numpy array
+       Created a dictionary that has the items as keys,
+       The corresponding values to the items are calculated from the numpy array
+       Return:
+         Returns a dictionary as output '''
     #Converted the list of items into a numpy array called 'item_list'
     items_np = np.array(items)
     
@@ -151,7 +159,24 @@ def number_of_tweets_per_day(df):
 ### END FUNCTION
 
 ### START FUNCTION
+
 def word_splitter(df):
+    '''
+       
+
+
+       Parameter: 
+        The function takes in a dataframe as input.
+       Body:
+        It takes a copy of the dataframe from the input
+        It extracts a data series and put the contents of the data series as lower case strings.
+        The lower case strings are split into a new list called  'tweets_data_series_split'
+        The list is placed into a data series called 'Split Tweets' that is then modified into
+        the dataframe, and is displayed as a new column called 'Split Tweets'
+
+        Return:
+            The function returs a dataframe with a new column called 'Split Tweets'
+       '''
     df = twitter_df.copy() #Made a copy of the main twitter_df and call it df
     tweets_dataseries = df['Tweets'] #Extract the tweets dataseries to a variable called tweets_dataseries
     tweets_dataseries_lower = tweets_dataseries.str.lower() #Lowercase the tweets_dataseries
