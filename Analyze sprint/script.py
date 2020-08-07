@@ -83,8 +83,19 @@ def five_num_summary(items):
 
 ### START FUNCTION
 def date_parser(dates):
-    # your code here
-    return
+    """
+    function date parser
+    parameter: List of date time strings dates
+    
+    body:
+        splits the date time strings list into only date strings list
+    return: 
+         date strings list in date format.
+    """
+    parsed_dates =[ ]#create a list for storing the date that has been parsed
+    for date in dates: #Loop through the dates input list
+        parsed_dates.append(date.split(' ')[0]) # append the parsed dates into the parsed_dates list
+    return parsed_dates #returning the parsed dates
 
 ### END FUNCTION
 ### START FUNCTION
