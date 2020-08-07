@@ -10,4 +10,4 @@ This is a script file which you use to call all our functions and imports for mo
 
 # Instruction
 If you want to use our package you can type
-pip install git+https://github.com/CharlesMaponya/Team_4_analyze-1.git
+pip install git+https://github.com/mokai1701/Team_4_analyze-1.git
