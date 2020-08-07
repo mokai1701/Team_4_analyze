@@ -69,6 +69,14 @@ stop_words_dict = {
 
 ### START FUNCTION
 def dictionary_of_metrics(items):
+    '''Parameter:
+        The function takes in a list as input
+       Body:
+       The list is converted to a numpy array
+       Created a dictionary that has the items as keys,
+       The corresponding values to the items are calculated from the numpy array
+       Return:
+         Returns a dictionary as output '''
     #Converted the list of items into a numpy array called 'item_list'
     items_np = np.array(items)
     
