@@ -77,7 +77,31 @@ def dictionary_of_metrics(items):
 ### START FUNCTION
 def five_num_summary(items):
     # your code here
-    return
+    """
+    this function takes an input of list of float numbers and
+    returns a five number summary statistics about that list
+    using numpy
+    
+    parameters:
+        items: accepts a list of floating numbers
+    Body:
+        Calculates the maximum, median, minimum, quantile 1 of 25%
+        quantile 3 of 75% using numpy methods
+    return:
+        Returns a dictionary of the summary statistics of the floating numberes list
+    """
+    maximum = np.max(items)
+    median = np.median(items)
+    minimum=np.min(items)
+    q1 = np.quantile(items,q=0.25)
+    q3 = np.quantile(items,q=0.75)
+    return {
+        'max':maximum,
+        'median':median,
+        'min':minimum,
+        'q1':q1,
+        'q3':q3
+    }
 
 ### END FUNCTION
 
