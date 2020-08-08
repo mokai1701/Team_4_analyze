@@ -181,7 +181,9 @@ def word_splitter(df):
 
 ### START FUNCTION
 def stop_words_remover(df):
-    """ Return a dataframe of Tweets without stop words
+    """ 
+    Function Stop words remover 
+
     Args : 
 
         token_tweets : splits(tokenizes) the tweets within the dataframe
@@ -193,10 +195,12 @@ def stop_words_remover(df):
 
     Egs (for specific rows) :
 
-        >>> stop_words_remover(twitter_df.copy()).loc[0, "Without Stop Words"] == ['@bongadlulane', 'send', 'email', 'mediadesk@eskom.co.za']"""
+        >>> stop_words_remover(twitter_df.copy()).loc[0, "Without Stop Words"] == ['@bongadlulane', 'send', 'email', 'mediadesk@eskom.co.za']
+        
+    """
         
 
-    token_tweets = df.Tweets.apply(lambda x: x.lower().split())
+    token_tweets = df.Tweets.apply(lambda x: x.lower().split()) 
     stops = stop_words_dict['stopwords']
     df["Without Stop Words"] = token_tweets.apply(lambda x: [word for word in x if word not in stops ])
     return df
