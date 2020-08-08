@@ -69,22 +69,77 @@ stop_words_dict = {
 
 ### START FUNCTION
 def dictionary_of_metrics(items):
-    # your code here
-    return
+    '''Parameter:
+        The function takes in a list as input
+       Body:
+       The list is converted to a numpy array
+       Created a dictionary that has the items as keys,
+       The corresponding values to the items are calculated from the numpy array
+       Return:
+         Returns a dictionary as output '''
+    #Converted the list of items into a numpy array called 'item_list'
+    items_np = np.array(items)
+    
+    #Return a dictionary with the metrics 'mean','median','std','var','min','max' as keys, and with  'items_rounded' values
+    metrics_dictionary = {'mean' : round(items_np.mean(), 2), 
+                         'median':round(np.median(items_np,axis = None), 2),
+                         'var' : round(items_np.var(ddof = 1), 2),
+                         'std' : round(items_np.std(ddof = 1), 2),
+                         'min' : round(items_np.min(), 2),
+                         'max' : round(items_np.max(), 2)}
+
+    return metrics_dictionary
+
+
 
 ### END FUNCTION
 
 ### START FUNCTION
 def five_num_summary(items):
     # your code here
-    return
+    """
+    this function takes an input of list of float numbers and
+    returns a five number summary statistics about that list
+    using numpy
+    
+    parameters:
+        items: accepts a list of floating numbers
+    Body:
+        Calculates the maximum, median, minimum, quantile 1 of 25%
+        quantile 3 of 75% using numpy methods
+    return:
+        Returns a dictionary of the summary statistics of the floating numberes list
+    """
+    maximum = np.max(items)
+    median = np.median(items)
+    minimum=np.min(items)
+    q1 = np.quantile(items,q=0.25)
+    q3 = np.quantile(items,q=0.75)
+    return {
+        'max':maximum,
+        'median':median,
+        'min':minimum,
+        'q1':q1,
+        'q3':q3
+    }
 
 ### END FUNCTION
 
 ### START FUNCTION
 def date_parser(dates):
-    # your code here
-    return
+    """
+    function date parser
+    parameter: List of date time strings dates
+    
+    body:
+        splits the date time strings list into only date strings list
+    return: 
+         date strings list in date format.
+    """
+    parsed_dates =[ ]#create a list for storing the date that has been parsed
+    for date in dates: #Loop through the dates input list
+        parsed_dates.append(date.split(' ')[0]) # append the parsed dates into the parsed_dates list
+    return parsed_dates #returning the parsed dates
 
 ### END FUNCTION
 ### START FUNCTION
@@ -92,18 +147,42 @@ def extract_municipality_hashtags(df):
     # your code here
     return
 
-### END FUNCTION
+
 ### START FUNCTION
 def number_of_tweets_per_day(df):
     # your code here
-    return
+"""Function which list number of tweets per day by converting pandas dataframe into a new dataframe specified by yyyy-mm-dd"""
+  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d')
+  return df.groupby('Date').count()
+### END FUNCTION
 
 ### END FUNCTION
 
 ### START FUNCTION
+
 def word_splitter(df):
-    # your code here
-    return
+    '''
+       
+
+
+       Parameter: 
+        The function takes in a dataframe as input.
+       Body:
+        It takes a copy of the dataframe from the input
+        It extracts a data series and put the contents of the data series as lower case strings.
+        The lower case strings are split into a new list called  'tweets_data_series_split'
+        The list is placed into a data series called 'Split Tweets' that is then modified into
+        the dataframe, and is displayed as a new column called 'Split Tweets'
+
+        Return:
+            The function returs a dataframe with a new column called 'Split Tweets'
+       '''
+    df = twitter_df.copy() #Made a copy of the main twitter_df and call it df
+    tweets_dataseries = df['Tweets'] #Extract the tweets dataseries to a variable called tweets_dataseries
+    tweets_dataseries_lower = tweets_dataseries.str.lower() #Lowercase the tweets_dataseries
+    tweets_dataseries_split = tweets_dataseries_lower.str.split() #Split the lowercase tweets_dataseries
+    df['Split Tweets'] = tweets_dataseries_split #Create a new column called 'Split Tweets', add it to the  dataframe
+    return df
 
 ### END FUNCTION
 
