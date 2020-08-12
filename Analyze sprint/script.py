@@ -95,19 +95,20 @@ def dictionary_of_metrics(items):
 
 ### START FUNCTION
 def five_num_summary(items):
-    # your code here
     """
     this function takes an input of list of float numbers and
     returns a five number summary statistics about that list
     using numpy
     
-    parameters:
-        items: accepts a list of floating numbers
-    Body:
-        Calculates the maximum, median, minimum, quantile 1 of 25%
-        quantile 3 of 75% using numpy methods
-    return:
-        Returns a dictionary of the summary statistics of the floating numberes list
+    Parameters:
+    -----------
+    items: list
+            A list of float numbers
+    
+    Return:
+    -------
+    dictionary: 
+            A dictionary with all the summary statistics
     """
     maximum = np.max(items)
     median = np.median(items)
@@ -126,34 +127,41 @@ def five_num_summary(items):
 
 ### START FUNCTION
 def date_parser(dates):
-    """
-    function date parser
-    parameter: List of date time strings dates
-    
-    body:
-        splits the date time strings list into only date strings list
-    return: 
-         date strings list in date format.
-    """
-    parsed_dates =[ ]#create a list for storing the date that has been parsed
-    for date in dates: #Loop through the dates input list
-        parsed_dates.append(date.split(' ')[0]) # append the parsed dates into the parsed_dates list
-    return parsed_dates #returning the parsed dates
-
-### END FUNCTION
-### START FUNCTION
-def extract_municipality_hashtags(df):
     # your code here
     return
+### END FUNCTION
+
+### START FUNCTION
+def extract_municipality_hashtags(df):
+    """
+    This function takes a pandas twitter dataFrame and extracts municipality mentions
+    and adds them to a new column called municipality
+    and also extracts hashtags in the Tweets series and adds them to a new column called hashtags
+    for each and every tweet row
+    Parameters:
+    -----------
+    
+    df: Pandas dataFrame
+        The twitter dataframe containing tweets and dates
+    
+    Returns:
+    --------
+    
+    df: Pandas dataFrame 
+        A modified dataframe with added columns called municipality and hashtags
+    """
+    df['municipality'] = df['Tweets'].apply(lambda muni: [municipality for municipality in muni.split() if municipality.startswith('@')])
+    df['municipality'] = df.index.to_series().map(mun_dict)
+    Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
+    df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
+    return df
+### END FUNCTION
 
 
 ### START FUNCTION
 def number_of_tweets_per_day(df):
     # your code here
-"""Function which list number of tweets per day by converting pandas dataframe into a new dataframe specified by yyyy-mm-dd"""
-  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d')
-  return df.groupby('Date').count()
-### END FUNCTION
+    return
 
 ### END FUNCTION
 
@@ -184,29 +192,8 @@ def word_splitter(df):
 
 ### START FUNCTION
 def stop_words_remover(df):
-    """ 
-    Function Stop words remover 
-
-    Args : 
-
-        token_tweets : splits(tokenizes) the tweets within the dataframe
-        stops : stop words in the tokenized list
-        df[] : modifies the input dataframe
-    
-    Return :
-        dataframe : tweets without stop words
-
-    Egs (for specific rows) :
-
-        >>> stop_words_remover(twitter_df.copy()).loc[0, "Without Stop Words"] == ['@bongadlulane', 'send', 'email', 'mediadesk@eskom.co.za']
-        
-    """
-        
-
-    token_tweets = df.Tweets.apply(lambda x: x.lower().split()) 
-    stops = stop_words_dict['stopwords']
-    df["Without Stop Words"] = token_tweets.apply(lambda x: [word for word in x if word not in stops ])
-    return df
+    # your code here
+    return
 
 ### END FUNCTION
 
