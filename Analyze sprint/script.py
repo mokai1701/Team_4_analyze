@@ -67,32 +67,31 @@ stop_words_dict = {
     ]
 }
 
-### START FUNCTION
-def dictionary_of_metrics(items):
-    '''Parameter:
-        The function takes in a list as input
-       Body:
-       The list is converted to a numpy array
-       Created a dictionary that has the items as keys,
-       The corresponding values to the items are calculated from the numpy array
-       Return:
-         Returns a dictionary as output '''
-    #Converted the list of items into a numpy array called 'item_list'
+
+dictionary_of_metrics(items):
+    '''The function calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
+
+    Parameters
+    -----------
+    The function takes in a list of items as input.
+    The list is converted to a numpy array.
+    The numpy array is used to calculate the values from the list input.
+    A dictionary is created that takes in the items as keys and corresponding numpy array values,
+        
+    Returns
+    -----------
+    Returns a dictionary as output 
+    '''
+                                
     items_np = np.array(items)
-    
-    #Return a dictionary with the metrics 'mean','median','std','var','min','max' as keys, and with  'items_rounded' values
     metrics_dictionary = {'mean' : round(items_np.mean(), 2), 
-                         'median':round(np.median(items_np,axis = None), 2),
+                         'median':round(np.median(items_np), 2),
                          'var' : round(items_np.var(ddof = 1), 2),
                          'std' : round(items_np.std(ddof = 1), 2),
                          'min' : round(items_np.min(), 2),
                          'max' : round(items_np.max(), 2)}
 
     return metrics_dictionary
-
-
-
-### END FUNCTION
 
 ### START FUNCTION
 def five_num_summary(items):
@@ -158,33 +157,31 @@ def number_of_tweets_per_day(df):
 
 ### END FUNCTION
 
-### START FUNCTION
+
 
 def word_splitter(df):
+    '''The function splits the sentences in a dataframe's column into a list of the separate words.
+        
+    Parameters
+    -----------
+    The function takes in the dataframe 'df' as input, a copy is then made.
+    The df.copy dataframe is then used to extracts a data series into a new list of lower case strings.
+    The lower case strings list is then split into a new list called  'tweets_data_series_split'.
+    The list is placed into a new data series called 'Split Tweets'.
+    The 'Split Tweets' is then modified into the dataframe, and is displayed as a new column called 'Split Tweets'.
+        
+    Returns
+    ----------
+    The function returns a dataframe with a new column called 'Split Tweets' as output
     '''
-       
-
-
-       Parameter: 
-        The function takes in a dataframe as input.
-       Body:
-        It takes a copy of the dataframe from the input
-        It extracts a data series and put the contents of the data series as lower case strings.
-        The lower case strings are split into a new list called  'tweets_data_series_split'
-        The list is placed into a data series called 'Split Tweets' that is then modified into
-        the dataframe, and is displayed as a new column called 'Split Tweets'
-
-        Return:
-            The function returs a dataframe with a new column called 'Split Tweets'
-       '''
-    df = twitter_df.copy() #Made a copy of the main twitter_df and call it df
-    tweets_dataseries = df['Tweets'] #Extract the tweets dataseries to a variable called tweets_dataseries
-    tweets_dataseries_lower = tweets_dataseries.str.lower() #Lowercase the tweets_dataseries
-    tweets_dataseries_split = tweets_dataseries_lower.str.split() #Split the lowercase tweets_dataseries
-    df['Split Tweets'] = tweets_dataseries_split #Create a new column called 'Split Tweets', add it to the  dataframe
+    df = twitter_df.copy() 
+    tweets_dataseries = df['Tweets'] 
+    tweets_dataseries_lower = tweets_dataseries.str.lower() 
+    tweets_dataseries_split = tweets_dataseries_lower.str.split()
+    df['Split Tweets'] = tweets_dataseries_split 
     return df
 
-### END FUNCTION
+
 
 
 def stop_words_remover(df):    
