@@ -68,20 +68,17 @@ stop_words_dict = {
 }
 
 
-dictionary_of_metrics(items):
-    '''The function calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
+def dictionary_of_metrics(items):
+  """The function calculates the mean, median,var,std,min,max of a numpy array from a list of values.
 
     Parameters
     -----------
     The function takes in a list of items as input.
-    The list is converted to a numpy array.
-    The numpy array is used to calculate the values from the list input.
-    A dictionary is created that takes in the items as keys and corresponding numpy array values,
         
     Returns
     -----------
     Returns a dictionary as output 
-    '''
+    """
                                 
     items_np = np.array(items)
     metrics_dictionary = {'mean' : round(items_np.mean(), 2), 
@@ -185,20 +182,16 @@ def number_of_tweets_per_day(df):
 
 
 def word_splitter(df):
-    '''The function splits the sentences in a dataframe's column into a list of the separate words.
+    """The function splits a dataseries from a dataframe into a new column.
         
     Parameters
     -----------
-    The function takes in the dataframe 'df' as input, a copy is then made.
-    The df.copy dataframe is then used to extracts a data series into a new list of lower case strings.
-    The lower case strings list is then split into a new list called  'tweets_data_series_split'.
-    The list is placed into a new data series called 'Split Tweets'.
-    The 'Split Tweets' is then modified into the dataframe, and is displayed as a new column called 'Split Tweets'.
-        
+    The function takes in the dataframe 'df' as input.
+    
     Returns
     ----------
-    The function returns a dataframe with a new column called 'Split Tweets' as output
-    '''
+    The function returns a dataframe with a new column called 'Split Tweets' as output.
+    """
     df = twitter_df.copy() 
     tweets_dataseries = df['Tweets'] 
     tweets_dataseries_lower = tweets_dataseries.str.lower() 
