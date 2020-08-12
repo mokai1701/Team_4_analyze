@@ -85,6 +85,12 @@ def five_num_summary(items):
     Parameters:
     -----------
     items: list
+            A list of float numbers
+    
+    Return:
+    -------
+    dictionary: 
+            A dictionary with all the summary statistics
     """
     maximum = np.max(items)
     median = np.median(items)
