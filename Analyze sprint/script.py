@@ -69,9 +69,28 @@ stop_words_dict = {
 
 ### START FUNCTION
 def dictionary_of_metrics(items):
-    # your code here
-    return
+    '''
+    The function calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
 
+       Parameters:
+            The function takes in a list of items as input.
+            The list is converted to a numpy array.
+            The numpy array is used to calculate the values from the list input.
+            A dictionary is created that takes in the items as keys and corresponding numpy array values,
+        
+       Returns:
+            Returns a dictionary as output 
+    '''
+                                
+    items_np = np.array(items)
+    metrics_dictionary = {'mean' : round(items_np.mean(), 2), 
+                         'median':round(np.median(items_np), 2),
+                         'var' : round(items_np.var(ddof = 1), 2),
+                         'std' : round(items_np.std(ddof = 1), 2),
+                         'min' : round(items_np.min(), 2),
+                         'max' : round(items_np.max(), 2)}
+
+    return metrics_dictionary
 ### END FUNCTION
 
 ### START FUNCTION
@@ -141,9 +160,27 @@ def number_of_tweets_per_day(df):
 ### END FUNCTION
 
 ### START FUNCTION
+
 def word_splitter(df):
-    # your code here
-    return
+    '''
+        The function splits the sentences in a dataframe's column into a list of the separate words.
+        
+        Parameters:
+            It takes in the dataframe 'df' as input, a copy is then made.
+            It extracts a data series into a new list of lower case strings.
+            The lower case strings list is then split into a new list called  'tweets_data_series_split'.
+            The list is placed into a new data series called 'Split Tweets'.
+            The 'Split Tweets' is then modified into the dataframe, and is displayed as a new column called 'Split Tweets'.
+        
+        Returns:
+            The function returns a dataframe with a new column called 'Split Tweets' as output
+    '''
+    df = twitter_df.copy() 
+    tweets_dataseries = df['Tweets'] 
+    tweets_dataseries_lower = tweets_dataseries.str.lower() 
+    tweets_dataseries_split = tweets_dataseries_lower.str.split()
+    df['Split Tweets'] = tweets_dataseries_split 
+    return df
 
 ### END FUNCTION
 
