@@ -130,7 +130,9 @@ def five_num_summary(items):
 def date_parser(dates):
     # your code here
     return
+### END FUNCTION
 
+### START FUNCTION
 def extract_municipality_hashtags(df):
     """
     This function takes a pandas twitter dataFrame and extracts municipality mentions
@@ -139,12 +141,14 @@ def extract_municipality_hashtags(df):
     
     Parameters:
     -----------
+    
     df: Pandas dataFrame
         The twitter dataframe containing tweets and dates
     
     Returns:
     --------
-    df: Pandas dataFrame
+    
+    df: Pandas dataFrame 
         A modified dataframe with added columns called municipality and hashtags
     """
     df['municipality'] = df['Tweets'].apply(lambda muni: [municipality for municipality in muni.split() if municipality.startswith('@')])
@@ -152,6 +156,9 @@ def extract_municipality_hashtags(df):
     Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
     df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
     return df
+### END FUNCTION
+
+
 ### START FUNCTION
 def number_of_tweets_per_day(df):
     # your code here
