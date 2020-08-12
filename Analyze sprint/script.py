@@ -186,7 +186,7 @@ def word_splitter(df):
 
 def stop_words_remover(df):    
     """ 
-    this function takes a pandas dataframe of tweets that includes stop words as input and 
+    The function takes a pandas dataframe of tweets that includes stop words as input and 
     returns a modified dataframe without the stop words 
 
     Parameters 
