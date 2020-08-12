@@ -93,14 +93,49 @@ def dictionary_of_metrics(items):
 ### START FUNCTION
 def five_num_summary(items):
     # your code here
-    return
+    """
+    this function takes an input of list of float numbers and
+    returns a five number summary statistics about that list
+    using numpy
+    
+    parameters:
+        items: accepts a list of floating numbers
+    Body:
+        Calculates the maximum, median, minimum, quantile 1 of 25%
+        quantile 3 of 75% using numpy methods
+    return:
+        Returns a dictionary of the summary statistics of the floating numberes list
+    """
+    maximum = np.max(items)
+    median = np.median(items)
+    minimum=np.min(items)
+    q1 = np.quantile(items,q=0.25)
+    q3 = np.quantile(items,q=0.75)
+    return {
+        'max':maximum,
+        'median':median,
+        'min':minimum,
+        'q1':q1,
+        'q3':q3
+    }
 
 ### END FUNCTION
 
 ### START FUNCTION
 def date_parser(dates):
-    # your code here
-    return
+    """
+    function date parser
+    parameter: List of date time strings dates
+    
+    body:
+        splits the date time strings list into only date strings list
+    return: 
+         date strings list in date format.
+    """
+    parsed_dates =[ ]#create a list for storing the date that has been parsed
+    for date in dates: #Loop through the dates input list
+        parsed_dates.append(date.split(' ')[0]) # append the parsed dates into the parsed_dates list
+    return parsed_dates #returning the parsed dates
 
 ### END FUNCTION
 ### START FUNCTION
@@ -108,11 +143,14 @@ def extract_municipality_hashtags(df):
     # your code here
     return
 
-### END FUNCTION
+
 ### START FUNCTION
 def number_of_tweets_per_day(df):
     # your code here
-    return
+"""Function which list number of tweets per day by converting pandas dataframe into a new dataframe specified by yyyy-mm-dd"""
+  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d')
+  return df.groupby('Date').count()
+### END FUNCTION
 
 ### END FUNCTION
 
@@ -138,12 +176,31 @@ def word_splitter(df):
 
 
 
-### START FUNCTION
-def stop_words_remover(df):
-    # your code here
-    return
 
-### END FUNCTION
+def stop_words_remover(df):    
+    """ 
+    The function takes a pandas dataframe of tweets that includes stop words as input and 
+    returns a modified dataframe without the stop words 
+
+    Parameters 
+    ----------- 
+
+        token_tweets : splits(tokenizes) the tweets within the dataframe
+        stops : stop words in the tokenized list
+        df[] : modifies the input dataframe
+    
+    Return 
+    ----------
+        df : a modified DataFrame of tweets without stop words
+           
+    """
+
+    token_tweets = df.Tweets.apply(lambda x: x.lower().split()) 
+    stops = stop_words_dict['stopwords']
+    df["Without Stop Words"] = token_tweets.apply(lambda x: [word for word in x if word not in stops ])
+    return df
+
+
 
 
 if __name__ == "__main__":
