@@ -82,13 +82,9 @@ def five_num_summary(items):
     returns a five number summary statistics about that list
     using numpy
     
-    parameters:
-        items: accepts a list of floating numbers
-    Body:
-        Calculates the maximum, median, minimum, quantile 1 of 25%
-        quantile 3 of 75% using numpy methods
-    return:
-        Returns a dictionary of the summary statistics of the floating numberes list
+    Parameters:
+    -----------
+    items: list
     """
     maximum = np.max(items)
     median = np.median(items)
@@ -110,13 +106,27 @@ def date_parser(dates):
     # your code here
     return
 
-### END FUNCTION
-### START FUNCTION
 def extract_municipality_hashtags(df):
-    # your code here
-    return
-
-### END FUNCTION
+    """
+    This function takes a pandas twitter dataFrame and extracts municipality mentions
+    and adds them to a new column called municipality
+    and also extracts hashtags in the Tweets series and adds them to a new column called hashtags
+    
+    Parameters:
+    -----------
+    df: Pandas dataFrame
+        The twitter dataframe containing tweets and dates
+    
+    Returns:
+    --------
+    df: Pandas dataFrame
+        A modified dataframe with added columns called municipality and hashtags
+    """
+    df['municipality'] = df['Tweets'].apply(lambda muni: [municipality for municipality in muni.split() if municipality.startswith('@')])
+    df['municipality'] = df.index.to_series().map(mun_dict)
+    Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
+    df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
+    return df
 ### START FUNCTION
 def number_of_tweets_per_day(df):
     # your code here
