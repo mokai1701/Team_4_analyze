@@ -95,7 +95,6 @@ def dictionary_of_metrics(items):
 
 ### START FUNCTION
 def five_num_summary(items):
-    # your code here
     """
     this function takes an input of list of float numbers and
     returns a five number summary statistics about that list
@@ -138,7 +137,7 @@ def extract_municipality_hashtags(df):
     This function takes a pandas twitter dataFrame and extracts municipality mentions
     and adds them to a new column called municipality
     and also extracts hashtags in the Tweets series and adds them to a new column called hashtags
-    
+    for each and every tweet row
     Parameters:
     -----------
     
