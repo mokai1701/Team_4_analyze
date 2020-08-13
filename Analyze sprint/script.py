@@ -203,12 +203,31 @@ def word_splitter(df):
 
 
 
-### START FUNCTION
-def stop_words_remover(df):
-    # your code here
-    return
 
-### END FUNCTION
+def stop_words_remover(df):    
+    """ 
+    The function takes a pandas dataframe of tweets that includes stop words as input and 
+    returns a modified dataframe without the stop words 
+
+    Parameters 
+    ----------- 
+
+        token_tweets : splits(tokenizes) the tweets within the dataframe
+        stops : stop words in the tokenized list
+        df[] : modifies the input dataframe
+    
+    Return 
+    ----------
+        df : a modified DataFrame of tweets without stop words
+           
+    """
+
+    token_tweets = df.Tweets.apply(lambda x: x.lower().split()) 
+    stops = stop_words_dict['stopwords']
+    df["Without Stop Words"] = token_tweets.apply(lambda x: [word for word in x if word not in stops ])
+    return df
+
+
 
 
 if __name__ == "__main__":
