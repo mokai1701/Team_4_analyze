@@ -122,7 +122,7 @@ def five_num_summary(items):
 
 ### END FUNCTION
 
-### START FUNCTION
+
 def date_parser(dates):
      """
     This function takes input of a list of these datetime strings formatted as 'yyyy-mm-dd hh:mm:ss' 
@@ -141,7 +141,7 @@ def date_parser(dates):
     for date in dates: 
         parsed_dates.append(date.split(' ')[0]) 
     return parsed_dates 
-### END FUNCTION
+
 
 ### START FUNCTION
 def extract_municipality_hashtags(df):
