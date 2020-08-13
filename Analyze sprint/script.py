@@ -69,8 +69,9 @@ stop_words_dict = {
 
 
 def dictionary_of_metrics(items):
-  """
-    The function calculates the mean, median,var,std,min,max of a numpy array from a list of values.
+
+  """The function calculates the mean, median,var,std,min,max of a numpy array from a list of values.
+
 
     Parameters
     -----------
@@ -93,20 +94,19 @@ def dictionary_of_metrics(items):
 
 
 def five_num_summary(items):
+    # your code here
     """
     this function takes an input of list of float numbers and
     returns a five number summary statistics about that list
     using numpy
     
-    Parameters:
-    -----------
-    items: list
-            A list of float numbers
-    
-    Return:
-    -------
-    dictionary: 
-            A dictionary with all the summary statistics
+    parameters:
+        items: accepts a list of floating numbers
+    Body:
+        Calculates the maximum, median, minimum, quantile 1 of 25%
+        quantile 3 of 75% using numpy methods
+    return:
+        Returns a dictionary of the summary statistics of the floating numberes list
     """
     maximum = np.max(items)
     median = np.median(items)
@@ -124,6 +124,7 @@ def five_num_summary(items):
 
 
 def date_parser(dates):
+
      """
     This function takes input of a list of these datetime strings formatted as 'yyyy-mm-dd hh:mm:ss' 
     and returns only the date in 'yyyy-mm-dd' format.
@@ -146,59 +147,51 @@ def date_parser(dates):
 
 def extract_municipality_hashtags(df):
     """
-    This function takes a pandas twitter dataFrame and extracts municipality mentions
-    and adds them to a new column called municipality
-    and also extracts hashtags in the Tweets series and adds them to a new column called hashtags
-    for each and every tweet row
-    Parameters:
-    -----------
-  
-    df: Pandas dataFrame
-        The twitter dataframe containing tweets and dates
+    function date parser
+    parameter: List of date time strings dates
     
-    Returns:
-    --------
-    
-    df: Pandas dataFrame 
-        A modified dataframe with added columns called municipality and hashtags
+    body:
+        splits the date time strings list into only date strings list
+    return: 
+         date strings list in date format.
     """
+
+    parsed_dates =[ ]#create a list for storing the date that has been parsed
+    for date in dates: #Loop through the dates input list
+        parsed_dates.append(date.split(' ')[0]) # append the parsed dates into the parsed_dates list
+    return parsed_dates #returning the parsed dates
+
     df['municipality'] = df['Tweets'].apply(lambda muni: [municipality for municipality in muni.split() if municipality.startswith('@')])
     df['municipality'] = df.index.to_series().map(mun_dict)
     Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
     df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
     return df
 
-### START FUNCTION
-def number_of_tweets_per_day(df):
 
-  """Function which takes a pandas dataframe as input of number of tweets per day and converts to new pandas dataframe into a new dataframe specified by the format yyyy-mm-dd
+def number_of_tweetsper_day(df):
+  
+    """
+    Function which takes a pandas dataframe as input of number of tweets per day and converts to new pandas dataframe into a new dataframe specified by the format yyyy-mm-dd
+ 
+    Parameters : 
+    -------------
 
-  Parameters :
-    
     Dataframe input converted to yyyy-mm-dd format
     Groups by format and counts number of tweets
 
-  Return   :
+    Return  :
+    -------------
 
     DataFrame(df) : number of tweets per day organised in new dataframe grouped by day for dates 2019-11-20 to 2019-11-29
   
-  """
-
-
-  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d') #dataframe input converted to yyyy-mm-dd format
-  new_df = df.groupby('Date').count() #groups by format and counts number of tweets
-  return new_df
-### END FUNCTION
-
-
-### END FUNCTION
-
+    """
+    df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d')
+    new_df = df.groupby('Date').count()
+    return new_df
 
 
 def word_splitter(df):
-    """
-    The function splits a dataseries from a dataframe into a new column.
-        
+    """The function splits a dataseries from a dataframe into a new column.
     Parameters
     -----------
     The function takes in the dataframe 'df' as input.
