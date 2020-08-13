@@ -91,7 +91,7 @@ def dictionary_of_metrics(items):
 
     return metrics_dictionary
 
-### START FUNCTION
+
 def five_num_summary(items):
     """
     this function takes an input of list of float numbers and
@@ -121,7 +121,6 @@ def five_num_summary(items):
         'q3':q3
     }
 
-### END FUNCTION
 
 ### START FUNCTION
 def date_parser(dates):
@@ -144,7 +143,7 @@ def date_parser(dates):
     return parsed_dates 
 ### END FUNCTION
 
-### START FUNCTION
+
 def extract_municipality_hashtags(df):
     """
     This function takes a pandas twitter dataFrame and extracts municipality mentions
@@ -168,7 +167,6 @@ def extract_municipality_hashtags(df):
     Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
     df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
     return df
-### END FUNCTION
 
 ### START FUNCTION
 def number_of_tweets_per_day(df):
