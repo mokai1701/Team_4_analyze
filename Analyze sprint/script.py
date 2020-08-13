@@ -69,7 +69,9 @@ stop_words_dict = {
 
 
 def dictionary_of_metrics(items):
+
   """The function calculates the mean, median,var,std,min,max of a numpy array from a list of values.
+
 
     Parameters
     -----------
@@ -90,7 +92,7 @@ def dictionary_of_metrics(items):
 
     return metrics_dictionary
 
-### START FUNCTION
+
 def five_num_summary(items):
     # your code here
     """
@@ -119,10 +121,31 @@ def five_num_summary(items):
         'q3':q3
     }
 
-### END FUNCTION
 
-### START FUNCTION
+
 def date_parser(dates):
+
+     """
+    This function takes input of a list of these datetime strings formatted as 'yyyy-mm-dd hh:mm:ss' 
+    and returns only the date in 'yyyy-mm-dd' format.
+    
+    Parameters:
+    -----------
+    dates: List of date time strings dates formatted as 'yyyy-mm-dd hh:mm:ss'.
+
+    Returns
+    -------
+     date strings list in 'yyyy-mm-dd' format.
+   
+    """
+    parsed_dates =[ ]
+    for date in dates: 
+        parsed_dates.append(date.split(' ')[0]) 
+    return parsed_dates 
+
+
+
+def extract_municipality_hashtags(df):
     """
     function date parser
     parameter: List of date time strings dates
@@ -132,17 +155,17 @@ def date_parser(dates):
     return: 
          date strings list in date format.
     """
+
     parsed_dates =[ ]#create a list for storing the date that has been parsed
     for date in dates: #Loop through the dates input list
         parsed_dates.append(date.split(' ')[0]) # append the parsed dates into the parsed_dates list
     return parsed_dates #returning the parsed dates
 
-### END FUNCTION
-### START FUNCTION
-def extract_municipality_hashtags(df):
-    # your code here
-    return
-
+    df['municipality'] = df['Tweets'].apply(lambda muni: [municipality for municipality in muni.split() if municipality.startswith('@')])
+    df['municipality'] = df.index.to_series().map(mun_dict)
+    Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
+    df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
+    return df
 
 
 def number_of_tweetsper_day(df):
@@ -169,7 +192,6 @@ def number_of_tweetsper_day(df):
 
 def word_splitter(df):
     """The function splits a dataseries from a dataframe into a new column.
-        
     Parameters
     -----------
     The function takes in the dataframe 'df' as input.
