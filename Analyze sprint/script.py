@@ -69,7 +69,8 @@ stop_words_dict = {
 
 
 def dictionary_of_metrics(items):
-  """The function calculates the mean, median,var,std,min,max of a numpy array from a list of values.
+  """
+    The function calculates the mean, median,var,std,min,max of a numpy array from a list of values.
 
     Parameters
     -----------
@@ -182,7 +183,8 @@ def number_of_tweets_per_day(df):
 
 
 def word_splitter(df):
-    """The function splits a dataseries from a dataframe into a new column.
+    """
+    The function splits a dataseries from a dataframe into a new column.
         
     Parameters
     -----------
