@@ -67,7 +67,7 @@ stop_words_dict = {
     ]
 }
 
-### START FUNCTION
+
 def dictionary_of_metrics(items):
     '''
     The function calculates the mean, median, variance, standard deviation, minimum and maximum of of list of items.
@@ -91,9 +91,8 @@ def dictionary_of_metrics(items):
                          'max' : round(items_np.max(), 2)}
 
     return metrics_dictionary
-### END FUNCTION
 
-### START FUNCTION
+
 def five_num_summary(items):
     """
     this function takes an input of list of float numbers and
@@ -123,15 +122,15 @@ def five_num_summary(items):
         'q3':q3
     }
 
-### END FUNCTION
 
-### START FUNCTION
+
+
 def date_parser(dates):
     # your code here
     return
-### END FUNCTION
 
-### START FUNCTION
+
+
 def extract_municipality_hashtags(df):
     """
     This function takes a pandas twitter dataFrame and extracts municipality mentions
@@ -155,7 +154,7 @@ def extract_municipality_hashtags(df):
     Tweets = df['Tweets'].apply(lambda words: [word.lower() for word in words.split() if word.startswith('#')])
     df['hashtags'] = Tweets.apply(lambda hashtag: np.nan if len(hashtag)==0 else hashtag)
     return df
-### END FUNCTION
+
 
 
 def number_of_tweets_per_day(df):
@@ -165,8 +164,8 @@ def number_of_tweets_per_day(df):
   Parameters :
 
   -----------------------
-    
-
+  
+  
     Dataframe input converted to yyyy-mm-dd format
     Groups by format and counts number of tweets
 
@@ -180,15 +179,15 @@ def number_of_tweets_per_day(df):
   """
 
 
-  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d') #dataframe input converted to yyyy-mm-dd format
-  new_df = df.groupby('Date').count() #groups by format and counts number of tweets
+  df['Date'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%m-%d')
+  new_df = df.groupby('Date').count() 
   return new_df
 
 
 
 
 
-### START FUNCTION
+
 
 def word_splitter(df):
     '''
@@ -211,14 +210,14 @@ def word_splitter(df):
     df['Split Tweets'] = tweets_dataseries_split 
     return df
 
-### END FUNCTION
 
-### START FUNCTION
+
+
 def stop_words_remover(df):
     # your code here
     return
 
-### END FUNCTION
+
 
 
 if __name__ == "__main__":
