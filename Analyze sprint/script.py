@@ -124,8 +124,23 @@ def five_num_summary(items):
 
 ### START FUNCTION
 def date_parser(dates):
-    # your code here
-    return
+     """
+    This function takes input of a list of these datetime strings formatted as 'yyyy-mm-dd hh:mm:ss' 
+    and returns only the date in 'yyyy-mm-dd' format.
+    
+    Parameters:
+    -----------
+    dates: List of date time strings dates formatted as 'yyyy-mm-dd hh:mm:ss'
+
+    Returns
+    -------
+     date strings list in 'yyyy-mm-dd' format.
+   
+    """
+    parsed_dates =[ ]
+    for date in dates: 
+        parsed_dates.append(date.split(' ')[0]) 
+    return parsed_dates 
 ### END FUNCTION
 
 ### START FUNCTION
